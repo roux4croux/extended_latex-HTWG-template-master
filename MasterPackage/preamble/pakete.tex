@@ -1,0 +1,133 @@
+\usepackage{graphicx}
+\usepackage{a4}
+%\usepackage{german}%korreliert mit babel Paket
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pdfpages}%fuegt pdf seiten ein im anhang
+
+%Literaturverzeichnis-------------------------------------------------------------------     
+%Fuer Deutschen namen Literaturverzeichnis anstatt bibliography
+%\usepackage{bibgerm}
+%ohne babel Paket schmeiß der Befehl \printbibliography den Fehler " Undefined Control sequence"
+\usepackage[english, main=ngerman]{babel}
+
+\usepackage[backend=biber,sortlocale=de_DE,style=ieee]{biblatex}
+%Einbinden des Literaturfiles
+\addbibresource{literatur.bib}   
+\DefineBibliographyStrings{ngerman}{                                                                                                 
+	bibliography={Literaturverzeichnis},                          
+	references={Literaturverzeichnis},
+	url = {URL}                                                                                                                       
+}
+%-------------------------------------------------------------------------------------------------
+
+%Chapterstyle------------------------------------------------
+\usepackage[Sonny]{fncychap}
+\makeatletter
+%Anpassungen fuer nummerierte Kapitel
+\def\@makechapterhead#1{%
+	  \vspace*{50\p@}% commenting out this line
+	{\parindent \z@ \raggedright \normalfont
+		\ifnum \c@secnumdepth >\m@ne
+		\if@mainmatter%%%%% Fix for frontmatter, mainmatter, and backmatter 040920
+		\DOCH
+		\fi
+		\fi
+		\interlinepenalty\@M
+		\if@mainmatter%%%%% Fix for frontmatter, mainmatter, and backmatter 060424
+		\DOTI{#1}%
+		\else%
+		\DOTIS{#1}%
+		\fi
+}}
+%Anpassungen fuer unnumerierte Kapitel Inhaltsverzeichnis etc.
+\def\@makeschapterhead#1{%
+	%  \vspace*{50\p@}% commenting out this command
+	{\parindent \z@ \raggedright
+		\normalfont
+		\interlinepenalty\@M
+		\DOTIS{#1}
+		\vskip 10\p@
+}}
+\makeatother
+
+%sections und subsections auch in serifer Schrift
+\setkomafont{sectioning}{\normalcolor\bfseries}
+
+%\ChTitleAsIs %notwenidg falls man einen anderen Chapterstyle vom Paket fncychap. Mögliche Styles
+%Sonny, Conny, Glenn, Rejne, Bjarne oder Lenny. Manche Styles kompilieren nicht ohne \ChTitleAsIs
+%-------------------------------------------------------------------------------------------------
+
+\usepackage{lipsum}
+
+%Ränder festlegen
+%\usepackage{geometry}
+%\newgeometry{a4paper,portrait,bindingoffset=1.5cm,	inner=2.5cm,outer=2.5cm,top=3cm,bottom=2cm}
+
+
+%Pagestlye definition - pagestyle ist Kopf oder Fusszeile. hier ist nur Kopfzeile bearbeitet------
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+%definiert was in Kopfzeile steht
+\automark[chapter]{chapter}
+\automark*[section]{section}
+\automark*[subsection]{}
+% entfernt Gliederungsnummer ab subsection
+\renewcommand*{\subsectionmarkformat}{}
+%setzt Seitenzahl mittig zentriert
+\ofoot[]{}% keine Seitenzahl mehr außen (o = near outer margin)
+\cfoot[\pagemark]{\pagemark}% Seitenzahl (c = centered)
+%-------------------------------------------------------------------------------------------------
+
+
+%Abkuerzungen-------------------------------------------------------------------------------------
+\usepackage[printonlyused,withpage]{acronym}
+%-------------------------------------------------------------------------------------------------
+
+
+% Layout des Inhaltsverzeichnis-------------------------------------------------------------------
+%\usepackage{titletoc}
+%\titlecontents{chapter}[0em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%\titlecontents{section}[1em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%\titlecontents{subsection}[2em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%\titlecontents{subsubsection}[3em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%%\titlecontents{figure}[0em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%%\titlecontents{table}[0em]{\addvspace{1pc}}{\thecontentslabel\enspace}{}{\titlerule*[0.3pc]{.}\contentspage}
+%% Maximale Tiefe von 2 Stufen unter der obersten im Inhaltscerzeichnis
+%\setcounter{tocdepth}{2}
+%% Tiefe der Nummering von Überschriften (z.b 2.5.1.1)
+%\setcounter{secnumdepth}{3}
+%-------------------------------------------------------------------------------------------------
+
+
+%Tabellen und Abbildungsanpassungen --------------------------------------------------------------
+\usepackage[titles]{tocloft}
+\usepackage{tocloft}
+\renewcommand{\cftfigpresnum}{Abbildung }
+\renewcommand{\cfttabpresnum}{Tabelle }
+
+\renewcommand{\cftfigaftersnum}{: }
+\renewcommand{\cfttabaftersnum}{: }
+%"Abbildung 1" und "Tabelle 1" anstatt 1.1, 1.2 usw.
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+%definiert Länge im Abbildungsverzeichnis an der Passage 'Abbildung XX:'
+\setlength{\cftfignumwidth}{2.7cm}
+\setlength{\cfttabnumwidth}{2.2cm}
+%linksbuendig
+\setlength{\cftfigindent}{0cm}
+\setlength{\cfttabindent}{0cm}
+%-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+%Ermöglicht sämtliche verlinkungne von Weblinks uber Acronymeu und Inhaltsverzeichnis oder Kapitel(label) verweise
+\usepackage[colorlinks, linkcolor = black, citecolor = black, filecolor = black, urlcolor = black]{hyperref}
+%-------------------------------------------------------------------------------------------------
+ 
+ 

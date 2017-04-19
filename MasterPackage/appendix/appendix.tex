@@ -1,0 +1,19 @@
+%Anfang Anhang -------------------------------------------------------------------------------------------
+\newcounter{anhang}
+\newcommand{\initAnhang}{
+	\renewcommand{\thepage}{\Alph{anhang}-\arabic{page}}
+	\newpage
+}
+
+\newcommand{\anhang}[1]{
+	\setcounter{page}{1}
+	\input{appendix/#1}
+	\cleardoubleemptypage
+}
+\begin{appendix}
+	\initAnhang   
+	\anhang{AnhangA.tex}
+	%\anhang{AnhangB.tex}
+	%\anhang{AnhangC.tex}
+\end{appendix}
+%Ende Anhang -------------------------------------------------------------------------------------------

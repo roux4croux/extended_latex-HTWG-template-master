@@ -1,0 +1,71 @@
+
+\documentclass[11pt,a4paper,headsepline,bibtotoc,toc=listof]{scrbook}		                                   
+
+\input{preamble/pakete}
+\input{preamble/variablen}
+
+%Anfang Document----------------------------------------------------------------
+\begin{document}
+
+\include{content/cover}
+\include{content/title}
+
+% Zähler zurücksetzen
+\setcounter{page}{0}
+% Römische Nummerierung
+\pagenumbering{Roman}
+\include{content/abstract}
+\include{content/affidavit}
+
+%Inhaltsverzeichnis-------------------------------------------------------------
+\tableofcontents
+%Inhaltsverzeichnis im Inhaltsverzeichnis anzeigen
+\addtocontents{toc}{\protect\addcontentsline{toc}{chapter}{Inhaltsverzeichnis}} 
+\cleardoubleemptypage
+
+%Abbildungsverzeichnis-------------------------------------------------------------
+%\begin{spacing}{2.0}
+\listoffigures
+\cleardoubleemptypage
+%\end{spacing}
+%\cleardoubleemptypage
+
+%Tabellenverzeichnis-------------------------------------------------------------
+%\begin{spacing}{2.0}
+\listoftables
+\cleardoubleemptypage
+%\end{spacing}
+%\cleardoubleemptypage
+
+% Abkürzungsverzeichnis-------------------------------------------------------------
+\include{content/abbreviations}
+\cleardoubleemptypage
+% Zähler zurücksetzen
+\setcounter{page}{1}
+
+% Arabische Nummerierung
+\pagenumbering{arabic}
+
+%Anfang Inhalt------------------------------------------------------------------
+
+\include{content/kapitel1}
+\include{content/kapitel2}
+\include{content/kapitel3}
+\include{content/kapitel4}
+
+
+%Ende Inhalt------------------------------------------------------------------------------------------
+
+%Literaturverzeichnis------------------------------------------------------------------
+\printbibliography
+\cleardoubleemptypage
+%Ende Literaturverzeichnis-----------------------------------------------------------------------------
+
+%Anfang Anhang -------------------------------------------------------------------------------------------
+\input{appendix/appendix}
+%Ende Anhang -------------------------------------------------------------------------------------------
+
+
+
+%Ende des Dokuments ------------------------------------------------------------
+\end{document}
